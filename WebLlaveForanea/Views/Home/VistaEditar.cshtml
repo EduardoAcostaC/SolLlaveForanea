@@ -1,0 +1,33 @@
+﻿@using EntidadLlaveForanea
+@model E_Mascotas
+
+@{
+    ViewBag.Title = "VistaEditar";
+}
+
+<h1 class="display-2">Editar Mascotas</h1>
+
+<form class="mt-3" action="/Home/EditarPOST" method="post">
+
+    <input type="hidden" name="idMascota" value="@Model.idMascota"/>
+
+    <label class="form-label">Nombre</label>
+    <input class="form-control" type="text" name="nombre" value="@Model.nombre" />
+    <br />
+
+    <label class="form-label">Edad</label>
+    <input class="form-control" type="text" name="edad" value="@Model.edad" />
+    <br />
+
+    <label class="form-label">Precio</label>
+    <input class="form-control" type="text" name="precio" value="@Model.precio"/>
+    <br />
+
+    <label class="form-label">Especie</label>
+    @Html.DropDownList("especieId", null, "Seleccionar", new { @class = "form-control" })
+    <br />
+
+    <input type="submit" class="btn btn-success" value="Actualizar" />
+    <a href="~/Home/Index" class="btn btn-primary"> Regresar </a>
+
+</form>

@@ -1,0 +1,46 @@
+﻿@using EntidadLlaveForanea
+
+@model List<E_Mascotas>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Vista Base de Datos</h2>
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["error"]
+    </div>
+}
+@if (TempData["mensaje"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["mensaje"]
+    </div>
+}
+<br />
+Actualmente tienes @Model.Count registros en la base de datos 
+<br />
+<table class="table table-striped mt-3">
+    <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Precio</th>
+        <th>Especie</th>
+        <th>Acciones</th>
+    </tr>
+    @foreach (E_Mascotas obj in Model)
+    {
+        <tr>
+            <td>@obj.nombre</td>
+            <td>@obj.edad</td>
+            <td>@obj.precio.ToString("c")</td>
+            <td>@obj.EntidadEspecie.nombreEspecie</td>
+            <td>
+                <a href="/Home/Eliminar/@obj.idMascota" onclick="return confirm('¿Seguro quieres eliminar a @obj.nombre?')" class="btn btn-danger">Eliminar</a>
+                <a href="/Home/IrEditar/@obj.idMascota" class="btn btn-primary">Editar</a>
+            </td>
+        </tr>
+    }
+</table>
